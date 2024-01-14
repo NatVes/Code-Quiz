@@ -1,7 +1,11 @@
 var QA = [
-    {question: "Which keyword is used to declare a variable in JavaScript?", answerOne: "1. let", answerTwo: "2. int", answerThree: "3. string", answerFour: "char"},
-    {question: "Which of the following is a correct way to declare and initialize an array in JavaScript?", answerOne: '1. var colors = "red, blue, green";', answerTwo: '2. var colors = {red, blue, green};', answerThree: '3. var colors = ["red", "blue", "green"];', answerFour: '4. var colors = {"red", "blue", "green"};'},
-    {question: "What does the acronym DOM stand for in JavaScript?", answerOne: "1. Data Object Model", answerTwo: "2. Document Oriented Model", answerThree: "3. Document Order Model", answerFour: "4. Document Object Model"},
-    {question: "What is the purpose of the addEventListener method in JavaScript?", answerOne: "1. Attaching an event handler to an element", answerTwo: "2. Adding a new HTML element", answerThree: "3. Adding a style to an element", answerFour: "4. Animating an element"},
-    {question: "What is the purpose of the JSON.stringify() method in JavaScript?", answerOne: "1. Parsing JSON", answerTwo: "2. Creating JSON", answerThree: "3. Converting a JavaScript object to a JSON string", answerFour: "4. Converting a JSON string to a JavaScript object"},
+    {question: "Which keyword is used to declare a variable in JavaScript?", answers: {answerOne: "let", answerTwo: "int", answerThree: "string", answerFour: "char"}, correctAnswer: "let",},
+
+    {question: "Which of the following is a correct way to declare and initialize an array in JavaScript?", answers: {answerOne: 'var colors = "red, blue, green";', answerTwo: 'var colors = {red, blue, green};', answerThree: 'var colors = ["red", "blue", "green"];', answerFour: 'var colors = {"red", "blue", "green"};'}, correctAnswer: 'var colors = ["red", "blue", "green"];',},
+
+    {question: "What does the acronym DOM stand for in JavaScript?", answers: {answerOne: "Data Object Model", answerTwo: "Document Oriented Model", answerThree: "Document Order Model", answerFour: "Document Object Model"}, correctAnswer: "Document Object Model",},
+
+    {question: "What is the purpose of the addEventListener method in JavaScript?", answers: {answerOne: "Attaching an event handler to an element", answerTwo: "Adding a new HTML element", answerThree: "Adding a style to an element", answerFour: "Animating an element"}, correctAnswer: "Attaching an event handler to an element",},
+
+    {question: "What is the purpose of the JSON.stringify() method in JavaScript?", answers: {answerOne: "Parsing JSON", answerTwo: "Creating JSON", answerThree: "Converting a JavaScript object to a JSON string", answerFour: "Converting a JSON string to a JavaScript object"}, correctAnswer: "Converting a JavaScript object to a JSON string",},
 ]
