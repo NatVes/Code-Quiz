@@ -38,12 +38,17 @@ function countdown() {
         timeLeft--;
         } else if (stopTimer == true) {            
             clearInterval(timeInterval);
-            scoreDisplay.textContent = timeLeft;
-            timer.textContent = timeLeft;            
+            if (timeLeft<0) {
+                scoreDisplay.textContent = 0;
+                timer.textContent = 0;
+            } else {
+                scoreDisplay.textContent = timeLeft;
+            timer.textContent = timeLeft;
+            }                        
         }
         else {
             clearInterval(timeInterval);
-            endQuiz();
+            endQuiz();            
             scoreDisplay.textContent = 0; 
             timer.textContent = 0;           
         }
@@ -69,7 +74,7 @@ function askQuestion (index) {
         choicesList.appendChild(button);
         button.addEventListener("click", function() {
             if (this.textContent == QA[index].correctAnswer) {  
-                showFeedback("Correct!");              
+                showFeedback("Correct!");                             
                 setTimeout(function() {showFeedback("");}, 300);
                 correctSound.play();
             } else {
