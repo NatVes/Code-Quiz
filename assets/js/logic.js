@@ -16,13 +16,8 @@ const incorrectSound = new Audio("./assets/sfx/incorrect.wav");
 
 var scoreTable = [];
 
+//Check if local storage contains anything and add it to the scoreTable array
 checkAdd();
-
-startBtn.addEventListener("click", function() {    
-    startQuiz();
-    askQuestion(0);
-    countdown();
-});
 
 function startQuiz() {
     startScreen.setAttribute("class", "hide");
@@ -36,17 +31,19 @@ function countdown() {
         if (timeLeft >= 0 && stopTimer == false) {        
         timer.textContent = timeLeft;        
         timeLeft--;
-        } else if (stopTimer == true) {            
+        } else if (stopTimer == true) {
+            //Stop timer when there are no more questions            
             clearInterval(timeInterval);
             if (timeLeft<0) {
                 scoreDisplay.textContent = 0;
                 timer.textContent = 0;
             } else {
                 scoreDisplay.textContent = timeLeft;
-            timer.textContent = timeLeft;
+                timer.textContent = timeLeft;
             }                        
         }
         else {
+            //Stop timer and finish the quiz when timeLeft=0
             clearInterval(timeInterval);
             endQuiz();            
             scoreDisplay.textContent = 0; 
@@ -73,14 +70,16 @@ function askQuestion (index) {
         button.appendChild(li);
         choicesList.appendChild(button);
         button.addEventListener("click", function() {
+            //Check if the answer is correct and continue the quiz
             if (this.textContent == QA[index].correctAnswer) {  
-                showFeedback("Correct!");                             
-                setTimeout(function() {showFeedback("");}, 300);
+                showFeedback("Correct!");
+                //Feedback will disappear after 0.5sec                             
+                setTimeout(function() {showFeedback("");}, 500);
                 correctSound.play();
             } else {
                 timeLeft -= 10;
                 showFeedback("Wrong!");
-                setTimeout(function() {showFeedback("");}, 300);
+                setTimeout(function() {showFeedback("");}, 500);
                 incorrectSound.play();               
             }
             
@@ -100,6 +99,26 @@ function endQuiz () {
     allDone.removeAttribute("class", "hide");
 }
 
+function storeUserData () {
+    localStorage.setItem("scoreTable", JSON.stringify(scoreTable));
+}
+
+function checkAdd() {
+    // Get stored data from localStorage
+    // Parsing the JSON string to an object
+    var storedData = JSON.parse(localStorage.getItem("scoreTable"));
+    // If stored data were retrieved from localStorage, update the scoreTable array to it
+    if (storedData !== null) {
+        scoreTable = storedData;
+    }
+}
+
+startBtn.addEventListener("click", function() {    
+    startQuiz();
+    askQuestion(0);
+    countdown();
+});
+
 submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
     
@@ -107,6 +126,7 @@ submitBtn.addEventListener("click", function(event) {
         initials: initials.value.toUpperCase().trim(),
         score: scoreDisplay.textContent,
     };  
+    
     if (initials.value.trim() === "") {
         feedback.textContent = "Enter your initials.";
         initials.value = "";
@@ -120,15 +140,6 @@ submitBtn.addEventListener("click", function(event) {
     window.location.href = "./highscores.html";      
 });
 
-function storeUserData () {
-    localStorage.setItem("scoreTable", JSON.stringify(scoreTable));
-}
 
-function checkAdd() {
-    var storedData = JSON.parse(localStorage.getItem("scoreTable"));
-    if (storedData !== null) {
-        scoreTable = storedData;
-    }
-}
 
 
