@@ -3,7 +3,7 @@ var clearBtn = document.querySelector("#clear");
 
 var scoreTable = JSON.parse(localStorage.getItem("scoreTable"));
 
-var sortedScore = scoreTable.sort((a,b)=> {return b.score-a.score});
+var sortedScore = scoreTable.sort((a,b) => {return b.score-a.score});
 
 function renderScore() {
     scoreList.innerHTML = "";
@@ -16,10 +16,8 @@ function renderScore() {
 }
 
 clearBtn.addEventListener("click", function() {    
-    localStorage.clear();
-    while (scoreList.hasChildNodes()) {
-        scoreList.removeChild(scoreList.firstChild);
-    }    
+    localStorage.clear();       
+    scoreList.innerHTML = "";
 });
 
 renderScore();
